@@ -31,6 +31,7 @@ always @(posedge clk_in) begin
   end else begin
     rx_buf         <= data_in;
     valid_buf      <= 1'b1;
+    out_i[0]       <= rx_buf;
     out_valid_i[0] <= valid_buf;
   end
 end
