@@ -74,7 +74,7 @@ endmodule
 
 `timescale 1ps/1ps
 
-`include "test_module2.sv"
+`include "test_module.sv"
 
 module top_tb;
 
