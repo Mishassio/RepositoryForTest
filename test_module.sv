@@ -13,14 +13,14 @@ module test_module #(parameter DATA_W = 8)
   output logic                    out_valid_3 
 );
 
-localparam int unsigned  DEPTH = 4         ;
-logic [(DATA_W - 1) : 0] rx_buf            ;
-logic [(DATA_W - 1) : 0] valid_buf         ;
-logic [(DATA_W - 1) : 0] out_i      [DEPTH];
-logic                    out_valid_i[DEPTH];
-wire  [(DEPTH-1):1]      shift_enable      ;
-wire  [(DEPTH-1):0]      eq_vector         ;
-wire                     is_unique         ;
+localparam int unsigned  DEPTH = 4                ;
+logic [(DATA_W - 1) : 0]              rx_buf      ;
+logic [(DATA_W - 1) : 0]              valid_buf   ;
+logic [(DEPTH-1):0][(DATA_W - 1) : 0] out_i       ;
+logic [(DEPTH-1):0]                   out_valid_i ;
+wire  [(DEPTH-1):1]                   shift_enable;
+wire  [(DEPTH-1):0]                   eq_vector   ;
+wire                                  is_unique   ;
 
 always @(posedge clk_in) begin
   if(1'b1 === reset_in) begin
@@ -59,14 +59,8 @@ for(genvar k = 0; k < DEPTH; k++) begin
   end
 end
 
-assign out_0       = out_i      [0];
-assign out_valid_0 = out_valid_i[0];
-assign out_1       = out_i      [1];
-assign out_valid_1 = out_valid_i[1];
-assign out_2       = out_i      [2];
-assign out_valid_2 = out_valid_i[2];
-assign out_3       = out_i      [3];
-assign out_valid_3 = out_valid_i[3];
+assign {out_3, out_2, out_1, out_0}                         = out_i      ;
+assign {out_valid_3, out_valid_2, out_valid_1, out_valid_0} = out_valid_i;
 
 endmodule
 
