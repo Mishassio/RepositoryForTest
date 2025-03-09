@@ -59,8 +59,8 @@ for(genvar k = 0; k < DEPTH; k++) begin
   end
 end
 
-  assign {out_3      , out_2      , out_1      , out_0      } = out_i      ;
-  assign {out_valid_3, out_valid_2, out_valid_1, out_valid_0} = out_valid_i;
+assign {out_3      , out_2      , out_1      , out_0      } = out_i      ;
+assign {out_valid_3, out_valid_2, out_valid_1, out_valid_0} = out_valid_i;
 
 endmodule
 
